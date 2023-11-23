@@ -6,9 +6,8 @@ function [ warpIC,errorVal ] = calIE( I1,I2,u,v )
 %   Detailed explanation goes here
 
 %warpI = mywarp_rgb(I1,u,v);
-warpI = warp_image(I1,u,v);
-warpIC = (warpI);
-warpI = uint8(warpI);
+warpI = warp_image(I2,u,v);
+warpIC = warpI;
 [h,w,d] = size(warpI);
 if d > 1
     warpI = rgb2gray(warpI);
@@ -17,9 +16,8 @@ end
 if d > 1
     I2 = rgb2gray(I2);
 end
-warpI = double(warpI);
-I2 = double(I2);
-errorVal_1 = (warpI - I2)/255;
+
+errorVal_1 = warpI - I2;
 errorVal_2 = errorVal_1.^2;
 errorVal_3 = sum(sum(errorVal_2));
 errorVal = sqrt(errorVal_3/(h*w));

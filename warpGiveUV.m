@@ -1,0 +1,10 @@
+i1=imread('..\smoke\photo32.jpg');
+load me-newvx newvx;
+load me-newvy newvy;
+[row,col,dim] = size(i1);
+[m,n] = size(newvx);
+cutI = i1(1:m,1:n,:);
+WI=uint8(warp_image(cutI,newvx,newvy));
+imwrite(cutI,'genSmoke01.jpg','jpg');
+imwrite(WI,'genSmoke02.jpg','jpg');
+imshow(WI);
